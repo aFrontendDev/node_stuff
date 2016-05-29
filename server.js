@@ -14,6 +14,37 @@ var server = http.createServer(function(request, response) {
 
 }).listen(8888);
 
+var serverRead = http.createServer(function(request, response) {
+    getData(response);
+}).listen(8081);
+
+function getData(response) {
+
+    var db = nano.db.use('angular_app');
+    var type = 'test';
+    var rows = null;
+    var dataArray = [];
+
+    db.view('tests', 'tests', {'key': type, 'include_docs': true}, function(err, body) {
+        if (!err) {
+          rows = body.rows;
+          rows.forEach(function(row) {
+            dataArray.push(row.doc);
+          });
+        } else {
+          console.log('noooooo');
+        }
+
+        response.writeHead(200, {
+            'content-type': 'text/plain'
+        });
+        response.write('showing data:\n\n');
+        response.end(util.inspect({
+            rows: dataArray
+        }));
+    });
+}
+
 
 function displayForm(response) {
     fs.readFile('form.html', function (err, data) {
@@ -59,7 +90,7 @@ function saveData(fields) {
 
     test_db.insert(data, function(err, body) {
         if (!err) {
-            console.log('done');
+            console.log('done :D');
             //awesome
         } else {
           console.log('fail :(');
