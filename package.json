@@ -1,0 +1,15 @@
+{
+  "name": "node-couchdb",
+  "version": "1.0.0",
+  "description": "to speak to couchdb",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node server.js"
+  },
+  "author": "Blackledge",
+  "dependencies": {
+    "formidable": "^1.0.17",
+    "nano": "^6.2.0"
+  }
+}
