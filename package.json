@@ -9,7 +9,9 @@
   },
   "author": "Blackledge",
   "dependencies": {
+    "express": "^4.13.4",
     "formidable": "^1.0.17",
+    "httpdispatcher": "^1.0.0",
     "nano": "^6.2.0"
   }
 }
